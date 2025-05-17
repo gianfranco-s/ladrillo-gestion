@@ -3,15 +3,12 @@ import pandas as pd
 import plotly.express as px
 
 # ── In-memory store ───────────────────────────────────────────────────────────
-# (Your CSV is already loaded into this list of dicts)
 encrypted_store = pd.read_csv("/tmp/test_data.csv").to_dict(orient="records")
 
 def list_projects(data=encrypted_store):
-    """Return sorted unique project_id values."""
     return sorted({rec["project_id"] for rec in data})
 
 def fetch_project_data(project_id, data=encrypted_store):
-    """Filter records by project_id and return as DataFrame."""
     return pd.DataFrame([rec for rec in data if rec["project_id"] == project_id])
 
 
@@ -30,51 +27,39 @@ if selected != "(none)":
     df = fetch_project_data(selected)
 
     # ── Parse date columns ────────────────────────────────────────────────────
-    for col in ("date_use_intended", "date_use_real", "date_bought"):
+    for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):
         if col in df.columns:
-            df[col] = pd.to_datetime(df[col])
+            df[col.replace("fecha_", "date_")] = pd.to_datetime(df[col])
 
-    # ── Clean up spending column ──────────────────────────────────────────────
+    # ── Clean spending column ──────────────────────────────────────────────────
     if "total_materials" not in df.columns:
         st.error("Missing `total_materials` column.")
         st.stop()
 
     df["total_materials"] = (
         df["total_materials"]
-        .astype(str)
-        .str.replace(r"[\$,]", "", regex=True)
-        .astype(float)
+          .astype(str)
+          .str.replace(r"[\$,]", "", regex=True)
+          .astype(float)
     )
 
-    st.subheader("📋 Loaded Data")
-    st.dataframe(df)
-
-    # ── Compute ISO-week start dates ──────────────────────────────────────────
-    df["week_intended"] = (
-        df["date_use_intended"]
-        .dt.to_period("W")
-        .apply(lambda r: r.start_time)
-    )
-    df["week_real"] = (
-        df["date_use_real"]
-        .dt.to_period("W")
-        .apply(lambda r: r.start_time)
-    )
+    # ── Compute ISO‐week start dates ──────────────────────────────────────────
+    df["week_intended"] = df["date_use_intended"].dt.to_period("W").apply(lambda r: r.start_time)
+    df["week_real"]     = df["date_use_real"].dt.to_period("W").apply(lambda r: r.start_time)
 
     # ── Aggregate weekly spending ─────────────────────────────────────────────
     weekly_intended = (
         df.groupby("week_intended")["total_materials"]
-        .sum()
-        .reset_index()
-        .rename(columns={"week_intended": "week"})
+          .sum()
+          .reset_index()
+          .rename(columns={"week_intended": "week"})
     )
     weekly_real = (
         df.groupby("week_real")["total_materials"]
-        .sum()
-        .reset_index()
-        .rename(columns={"week_real": "week"})
+          .sum()
+          .reset_index()
+          .rename(columns={"week_real": "week"})
     )
-
     combined = pd.merge(
         weekly_intended,
         weekly_real,
@@ -83,7 +68,6 @@ if selected != "(none)":
         suffixes=("_intended", "_real"),
     ).sort_values("week").fillna(0)
 
-    # ── Melt for a single superimposed chart ─────────────────────────────────
     long = combined.melt(
         id_vars="week",
         value_vars=["total_materials_intended", "total_materials_real"],
@@ -95,7 +79,7 @@ if selected != "(none)":
         "total_materials_real": "Real",
     })
 
-    # ── Plot ─────────────────────────────────────────────────────────────────
+    # ── Plot at the top ───────────────────────────────────────────────────────
     st.subheader("📊 Weekly Spending Evolution (Intended vs. Real)")
     fig = px.line(
         long,
@@ -108,6 +92,11 @@ if selected != "(none)":
     fig.update_xaxes(dtick="W1", tickformat="%Y-%m-%d")
     fig.update_layout(legend_title_text="")
     st.plotly_chart(fig, use_container_width=True)
+
+    # ── Toggleable data table ─────────────────────────────────────────────────
+    if st.checkbox("Show data table"):
+        st.subheader("📋 Loaded Data")
+        st.dataframe(df)
 
 else:
     st.info("Upload data to begin or create records via the uploader.")

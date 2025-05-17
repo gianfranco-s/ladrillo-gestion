@@ -1,88 +1,88 @@
-project_id,construction_phase,floor_nr,material_type,material_name,material_description,brand,unit,quantity,unit_price,total_materials,date_bought,date_use_intended,date_use_real,,,Notes
-101,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-11,2025-04-12,2025-04-12,,,groupings
-101,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-27,2025-04-29,2025-05-01,,,"preliminar: preliminary_tasks, foundation"
-101,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-05-01,2025-05-03,2025-05-04,,,"fine: bathroom_walls, interior_openings, exterior_openings, interior_equipement, installations"
-101,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-29,2025-04-30,2025-05-02,,,"gross: structure, walls, roof, exterior"
-101,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-06,2025-04-10,2025-04-11,,,
-101,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-03,2025-04-04,2025-04-06,,,
-101,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-02,2025-04-06,2025-04-08,,,
-101,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-14,2025-04-16,2025-04-18,,,
-101,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-02,2025-04-05,2025-04-07,,,
-101,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-26,2025-04-27,2025-04-29,,,
-101,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-20,2025-04-21,2025-04-23,,,
-101,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-28,2025-04-30,2025-05-01,,,
-101,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-25,2025-04-27,2025-04-29,,,
-101,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-25,2025-04-30,2025-05-02,,,
-101,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-28,2025-05-01,2025-05-01,,,
-101,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-08,2025-04-10,2025-04-10,,,
-101,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-19,2025-04-21,2025-04-22,,,
-101,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-14,2025-04-17,2025-04-19,,,
-101,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-07,2025-04-10,2025-04-11,,,
-101,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-19,2025-04-22,2025-04-22,,,
-101,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-16,2025-04-18,2025-04-19,,,
-101,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-18,2025-04-22,2025-04-23,,,
-101,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-23,2025-04-27,2025-04-27,,,
-101,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-13,2025-04-14,2025-04-16,,,
-101,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-13,2025-04-18,2025-04-20,,,
-101,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-05-01,2025-05-04,2025-05-06,,,
-101,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-18,2025-04-22,2025-04-23,,,
-101,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-12,2025-04-14,2025-04-16,,,
-101,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-06,2025-04-09,2025-04-10,,,
-102,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-15,2025-04-17,2025-04-18,,,
-102,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-12,2025-04-14,2025-04-14,,,
-102,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-11,2025-04-13,2025-04-14,,,
-102,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-12,2025-04-17,2025-04-17,,,
-102,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-21,2025-04-24,2025-04-24,,,
-102,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-27,2025-05-02,2025-05-04,,,
-102,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-27,2025-05-02,2025-05-04,,,
-102,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-24,2025-04-28,2025-04-30,,,
-102,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-25,2025-04-30,2025-04-30,,,
-102,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-14,2025-04-18,2025-04-18,,,
-102,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-28,2025-04-30,2025-05-02,,,
-102,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-30,2025-05-02,2025-05-02,,,
-102,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-13,2025-04-15,2025-04-15,,,
-102,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-09,2025-04-13,2025-04-15,,,
-102,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-16,2025-04-18,2025-04-20,,,
-102,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-18,2025-04-19,2025-04-21,,,
-102,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-30,2025-04-30,,,
-102,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-17,2025-04-20,2025-04-20,,,
-102,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-26,2025-04-28,2025-04-29,,,
-102,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-17,2025-04-18,2025-04-18,,,
-102,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-01,2025-04-04,2025-04-04,,,
-102,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-05,2025-04-07,2025-04-07,,,
-102,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-06,2025-04-09,2025-04-09,,,
-102,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-04,2025-04-05,2025-04-07,,,
-102,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-30,2025-05-03,2025-05-04,,,
-102,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-24,2025-04-25,2025-04-25,,,
-102,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-26,2025-04-28,2025-04-29,,,
-102,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-21,2025-04-22,2025-04-22,,,
-102,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-02,2025-04-07,2025-04-07,,,
-103,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-28,2025-04-29,2025-04-30,,,
-103,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-22,2025-04-27,2025-04-28,,,
-103,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-01,2025-04-03,2025-04-03,,,
-103,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-24,2025-04-29,2025-04-30,,,
-103,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-07,2025-04-12,2025-04-12,,,
-103,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-29,2025-05-03,2025-05-05,,,
-103,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-16,2025-04-17,2025-04-19,,,
-103,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-28,2025-04-30,,,
-103,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-20,2025-04-21,2025-04-21,,,
-103,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-07,2025-04-12,2025-04-12,,,
-103,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-01,2025-04-06,2025-04-07,,,
-103,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-04,2025-04-08,2025-04-09,,,
-103,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-19,2025-04-21,2025-04-22,,,
-103,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-14,2025-04-19,2025-04-21,,,
-103,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-16,2025-04-17,2025-04-19,,,
-103,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-05-01,2025-05-06,2025-05-08,,,
-103,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-28,2025-04-30,,,
-103,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-08,2025-04-13,2025-04-14,,,
-103,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-06,2025-04-10,2025-04-11,,,
-103,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-21,2025-04-26,2025-04-27,,,
-103,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-05-01,2025-05-03,2025-05-03,,,
-103,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-27,2025-05-02,2025-05-04,,,
-103,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-17,2025-04-20,2025-04-21,,,
-103,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-19,2025-04-23,2025-04-24,,,
-103,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-08,2025-04-11,2025-04-11,,,
-103,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-07,2025-04-09,2025-04-11,,,
-103,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-06,2025-04-08,2025-04-09,,,
-103,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-25,2025-04-27,2025-04-29,,,
-103,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-30,2025-05-05,2025-05-06,,,
+project_id,construction_phase,floor_nr,material_type,material_name,material_description,brand,unit,quantity,unit_price,total_materials,date_bought,date_use_intended,date_use_real
+101,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-11,2025-04-12,2025-04-12
+101,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-27,2025-04-29,2025-05-01
+101,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-05-01,2025-05-03,2025-05-04
+101,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-29,2025-04-30,2025-05-02
+101,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-06,2025-04-10,2025-04-11
+101,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-03,2025-04-04,2025-04-06
+101,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-02,2025-04-06,2025-04-08
+101,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-14,2025-04-16,2025-04-18
+101,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-02,2025-04-05,2025-04-07
+101,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-26,2025-04-27,2025-04-29
+101,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-20,2025-04-21,2025-04-23
+101,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-28,2025-04-30,2025-05-01
+101,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-25,2025-04-27,2025-04-29
+101,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-25,2025-04-30,2025-05-02
+101,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-28,2025-05-01,2025-05-01
+101,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-08,2025-04-10,2025-04-10
+101,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-19,2025-04-21,2025-04-22
+101,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-14,2025-04-17,2025-04-19
+101,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-07,2025-04-10,2025-04-11
+101,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-19,2025-04-22,2025-04-22
+101,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-16,2025-04-18,2025-04-19
+101,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-18,2025-04-22,2025-04-23
+101,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-23,2025-04-27,2025-04-27
+101,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-13,2025-04-14,2025-04-16
+101,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-13,2025-04-18,2025-04-20
+101,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-05-01,2025-05-04,2025-05-06
+101,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-18,2025-04-22,2025-04-23
+101,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-12,2025-04-14,2025-04-16
+101,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-06,2025-04-09,2025-04-10
+102,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-15,2025-04-17,2025-04-18
+102,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-12,2025-04-14,2025-04-14
+102,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-11,2025-04-13,2025-04-14
+102,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-12,2025-04-17,2025-04-17
+102,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-21,2025-04-24,2025-04-24
+102,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-27,2025-05-02,2025-05-04
+102,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-27,2025-05-02,2025-05-04
+102,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-24,2025-04-28,2025-04-30
+102,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-25,2025-04-30,2025-04-30
+102,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-14,2025-04-18,2025-04-18
+102,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-28,2025-04-30,2025-05-02
+102,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-30,2025-05-02,2025-05-02
+102,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-13,2025-04-15,2025-04-15
+102,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-09,2025-04-13,2025-04-15
+102,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-16,2025-04-18,2025-04-20
+102,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-18,2025-04-19,2025-04-21
+102,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-30,2025-04-30
+102,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-17,2025-04-20,2025-04-20
+102,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-26,2025-04-28,2025-04-29
+102,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-17,2025-04-18,2025-04-18
+102,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-01,2025-04-04,2025-04-04
+102,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-05,2025-04-07,2025-04-07
+102,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-06,2025-04-09,2025-04-09
+102,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-04,2025-04-05,2025-04-07
+102,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-30,2025-05-03,2025-05-04
+102,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-24,2025-04-25,2025-04-25
+102,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-26,2025-04-28,2025-04-29
+102,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-21,2025-04-22,2025-04-22
+102,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-02,2025-04-07,2025-04-07
+103,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-28,2025-04-29,2025-04-30
+103,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-22,2025-04-27,2025-04-28
+103,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-01,2025-04-03,2025-04-03
+103,gross,0,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-24,2025-04-29,2025-04-30
+103,gross,0,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-07,2025-04-12,2025-04-12
+103,gross,0,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-29,2025-05-03,2025-05-05
+103,fine,0,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-16,2025-04-17,2025-04-19
+103,fine,0,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-28,2025-04-30
+103,fine,0,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-20,2025-04-21,2025-04-21
+103,fine,0,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-07,2025-04-12,2025-04-12
+103,fine,0,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-01,2025-04-06,2025-04-07
+103,gross,1,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-04-04,2025-04-08,2025-04-09
+103,gross,1,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-19,2025-04-21,2025-04-22
+103,gross,1,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-14,2025-04-19,2025-04-21
+103,gross,1,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-16,2025-04-17,2025-04-19
+103,fine,1,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-05-01,2025-05-06,2025-05-08
+103,fine,1,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-27,2025-04-28,2025-04-30
+103,fine,1,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-08,2025-04-13,2025-04-14
+103,fine,1,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-06,2025-04-10,2025-04-11
+103,fine,1,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-21,2025-04-26,2025-04-27
+103,gross,2,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-05-01,2025-05-03,2025-05-03
+103,gross,2,walls,Concrete Blocks,Standard hollow wall blocks,,unit,800,$0.60,$480.00,2025-04-27,2025-05-02,2025-05-04
+103,gross,2,roof,Steel Sheets,Galvanized roofing sheets,CoverMax,sheet,30,$15.00,$450.00,2025-04-17,2025-04-20,2025-04-21
+103,gross,2,exterior,Acrylic Paint,Weatherproof exterior wall paint,DuraColor,litre,40,$9.50,$380.00,2025-04-19,2025-04-23,2025-04-24
+103,fine,2,bathroom_walls,Ceramic Tiles,Glossy wall tiles for bathrooms,Ilva,m2,30,$11.00,$330.00,2025-04-08,2025-04-11,2025-04-11
+103,fine,2,interior_openings,Door Frames,Wooden door frames with hinges,Casagrande,unit,5,$60.00,$300.00,2025-04-07,2025-04-09,2025-04-11
+103,fine,2,exterior_openings,Window Frames,Aluminum double-glazed windows,AlumCo,unit,4,$180.00,$720.00,2025-04-06,2025-04-08,2025-04-09
+103,fine,2,interior_equipement,Kitchen Cabinetry,Upper and lower kitchen cabinets with handles,KitWood,set,1,$950.00,$950.00,2025-04-25,2025-04-27,2025-04-29
+103,fine,2,installations,Plumbing Kit,Complete set for bathroom water installation,AquaSys,kit,1,$270.00,$270.00,2025-04-30,2025-05-05,2025-05-06
