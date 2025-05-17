@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-from db_mock import insert_records, list_projects, fetch_project_data
+from db_mock import list_projects, fetch_project_data
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
@@ -9,18 +9,6 @@ st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 st.sidebar.header("📁 Selecciona Proyecto")
 projects = list_projects()
 selected = st.sidebar.selectbox("Proyecto", projects if projects else ["(ninguno)"])
-
-loaded_data = "/tmp/test_data.csv"
-if loaded_data is not None:
-    try:
-        df_new = pd.read_csv(loaded_data)
-        st.sidebar.write("✅ Preview:")
-        st.sidebar.dataframe(df_new.head())
-        count = insert_records(df_new)
-        st.sidebar.success(f"{count} registros cargados.")
-        projects = list_projects()
-    except Exception as e:
-        st.sidebar.error(f"Error: {e}")
 
 # ── Main view ────────────────────────────────────────────────────────────────
 st.title(f"🏗️ Proyecto: {selected}")
