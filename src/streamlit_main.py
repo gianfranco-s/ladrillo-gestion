@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ── In-memory store ───────────────────────────────────────────────────────────
+# ── In-memory store ────────────────────────────────────────────────────────────
 encrypted_store = pd.read_csv("/tmp/test_data.csv").to_dict(orient="records")
 
 def list_projects(data=encrypted_store):
@@ -20,11 +20,25 @@ st.sidebar.header("Select Project")
 projects = list_projects()
 selected = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
 
+# ── Phase filter ─────────────────────────────────────────────────────────────
+phase_options = ["preliminar", "gross", "fine"]
+selected_phases = st.sidebar.multiselect(
+    "Construction Phases",
+    options=phase_options,
+    default=phase_options
+)
+
 # ── Main view ────────────────────────────────────────────────────────────────
 st.title(f"🏗️ Project: {selected}")
 
 if selected != "(none)":
     df = fetch_project_data(selected)
+
+    # ── Phase filtering ───────────────────────────────────────────────────────
+    if "construction_phase" in df.columns:
+        df = df[df["construction_phase"].isin(selected_phases)]
+    else:
+        st.warning("No `construction_phase` column found to filter on.")
 
     # ── Parse date columns ────────────────────────────────────────────────────
     for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):
@@ -43,7 +57,7 @@ if selected != "(none)":
           .astype(float)
     )
 
-    # ── Compute ISO‐week start dates ──────────────────────────────────────────
+    # ── Compute ISO-week start dates ──────────────────────────────────────────
     df["week_intended"] = df["date_use_intended"].dt.to_period("W").apply(lambda r: r.start_time)
     df["week_real"]     = df["date_use_real"].dt.to_period("W").apply(lambda r: r.start_time)
 
@@ -68,6 +82,7 @@ if selected != "(none)":
         suffixes=("_intended", "_real"),
     ).sort_values("week").fillna(0)
 
+    # ── Melt for superimposed chart ────────────────────────────────────────────
     long = combined.melt(
         id_vars="week",
         value_vars=["total_materials_intended", "total_materials_real"],
@@ -87,7 +102,11 @@ if selected != "(none)":
         y="Spending",
         color="Spending Type",
         markers=True,
-        labels={"week": "Week Start", "Spending": "Total Spending (USD)", "Spending Type": ""},
+        labels={
+            "week": "Week Start",
+            "Spending": "Total Spending (USD)",
+            "Spending Type": ""
+        },
     )
     fig.update_xaxes(dtick="W1", tickformat="%Y-%m-%d")
     fig.update_layout(legend_title_text="")
