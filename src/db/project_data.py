@@ -2,6 +2,7 @@ from typing import Protocol
 
 
 class ProjectInfo:
+    name: str
     build_surface: float
     terrain_surface: float
     floors_total: int
