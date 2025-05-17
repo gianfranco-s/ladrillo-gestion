@@ -10,14 +10,10 @@ st.sidebar.header("📁 Selecciona Proyecto")
 projects = list_projects()
 selected = st.sidebar.selectbox("Proyecto", projects if projects else ["(ninguno)"])
 
-st.sidebar.header("➕ Cargar Datos (CSV)")
-uploaded = st.sidebar.file_uploader(
-    "Sube tu CSV con columnas: proyecto, fecha_compra, fecha_uso, material, cantidad_usada, unidad, proveedor",
-    type="csv"
-)
-if uploaded is not None:
+loaded_data = "/tmp/test_data.csv"
+if loaded_data is not None:
     try:
-        df_new = pd.read_csv(uploaded)
+        df_new = pd.read_csv(loaded_data)
         st.sidebar.write("✅ Preview:")
         st.sidebar.dataframe(df_new.head())
         count = insert_records(df_new)
