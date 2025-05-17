@@ -104,7 +104,7 @@ if selected != "(none)":
         markers=True,
         labels={
             "week": "Week Start",
-            "Spending": "Total Spending (USD)",
+            "Spending": "Materials Spending (USD)",
             "Spending Type": ""
         },
     )
