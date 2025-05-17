@@ -7,7 +7,10 @@ Run locally (no Docker)
 uv run streamlit run src/streamlit_main.py
 ```
 
-
+To do:
+* add plot to show workers salary
+* show progress bar for project status
+ 
 ## Docker
 Build
 ```sh
