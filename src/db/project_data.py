@@ -1,78 +1,86 @@
-from typing import Protocol
-
-
+from enum import StrEnum
+from datetime import datetime
 class ProjectInfo:
-    name: str
-    build_surface: float
-    terrain_surface: float
+    project_id: int
+    project_name: str
+    build_surface_m2: float
+    terrain_surface_m2: float
     floors_total: int
-    
-
-class BudgetUsd:
-    construction_gross: int
-    construction_fine: int
-    fees_professional: int
-    fees_provider: int
-
-    def total(self) -> int:
-        return (
-            self.construction_gross
-            + self.construction_fine
-            + self.fees_professional
-            + self.fees_provider
-        )
 
 
-class EstimatedTimeMonths:
-    project_design: int
-    neighborhood_approval: int
-    city_approval: int
-    construction_gross: int
-    construction_fine: int
-
-
-class ProjectProviders:
-    gas: str
-    water: str
-    electricity: str
-    materials: str
-    materials_storage: str
-    personnel_management: str
+class ConstructionPhase(StrEnum):
+    PRELIMINARY = "PRELIMINARY"
+    GROSS = "GROSS"
+    FINE = "FINE"
 
 
 class Material:
-    name: str
+    material_id: int
+    material_name: str
     description: str | None
     unit: str
     quantity: float
-    price_per_unit: float
+    unit_price: float
     brand: str | None
+    provider: str | None
 
 
-class ConstructionTask(Protocol):
+class ConstructionTask:
     floor_nr: int
+    date_bought: datetime
+    date_use_intended: datetime
+    date_use_real: datetime
+    phase_type: ConstructionPhase
+
+    # materials: list[Material]
 
     def total_price(self) -> float: ...
 
 
 class ConstructionPreliminary(ConstructionTask):
-    preliminary_tasks: list[Material]
-    foundation: list[Material]
-
+    material_type = 'any of ["preliminary_tasks", "foundation"]'
+    materials: list[Material]
 
 class ConstructionGross(ConstructionTask):
-    floor_nr: int
-    structure: list[Material]
-    walls: list[Material]
-    roof: list[Material]
-    exterior: list[Material]
-    # total_price(method)
+    material_type = 'any of  ["structure", "walls", "roof", "exterior"]'
+    materials: list[Material]
 
 
 class ConstructionFine(ConstructionTask):
-    floor_nr: int
-    bathroom_walls: list[Material]
-    interior_openings: list[Material]
-    exterior_openings: list[Material]
-    interior_equipement: list[Material]
-    installations: list[Material]
+    material_type = 'any of ["bathroom_walls", "interior_openings", "exterior_openings", "interior_equipement", "installations"]'
+    materials: list[Material]
+    
+# class BudgetUsd:
+#     # this could be a property of ProjectInfo
+#     construction_gross: int
+#     construction_fine: int
+#     fees_professional: int
+#     fees_provider: int
+
+#     def total(self) -> int:
+#         return (
+#             self.construction_gross
+#             + self.construction_fine
+#             + self.fees_professional
+#             + self.fees_provider
+#         )
+
+
+# class EstimatedTimeMonths:
+#     # this could be a property of ProjectInfo
+#     project_design: int
+#     neighborhood_approval: int
+#     city_approval: int
+#     construction_gross: int
+#     construction_fine: int
+
+
+# class ProjectProviders:
+#     # this could be a property of ProjectInfo
+#     gas: str
+#     water: str
+#     electricity: str
+#     materials: str
+#     materials_storage: str
+#     personnel_management: str
+
