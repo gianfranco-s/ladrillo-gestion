@@ -95,7 +95,7 @@ if selected != "(none)":
     })
 
     # ── Plot at the top ───────────────────────────────────────────────────────
-    st.subheader("📊 Weekly Spending Evolution (Intended vs. Real)")
+    st.subheader("📊 Weekly Materials Spending (Intended vs. Real)")
     fig = px.line(
         long,
         x="week",
