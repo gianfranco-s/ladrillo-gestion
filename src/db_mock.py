@@ -7,5 +7,5 @@ def list_projects(data=encrypted_store):
     return sorted({rec["project_id"] for rec in data})
 
 
-def fetch_project_data(project_id: str, data=encrypted_store) -> pd.DatataFrame:
+def fetch_project_data(project_id: str, data=encrypted_store) -> pd.DataFrame:
     return pd.DataFrame([rec for rec in data if rec["project_id"] == project_id])

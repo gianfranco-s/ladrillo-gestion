@@ -2,33 +2,22 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# ── In-memory store ────────────────────────────────────────────────────────────
-encrypted_store = pd.read_csv("/tmp/test_data.csv").to_dict(orient="records")
+from db_mock import list_projects, fetch_project_data
+from db.models import ConstructionPhase
 
-def list_projects(data=encrypted_store):
-    return sorted({rec["project_id"] for rec in data})
-
-def fetch_project_data(project_id, data=encrypted_store):
-    return pd.DataFrame([rec for rec in data if rec["project_id"] == project_id])
-
-
-# ── App config ────────────────────────────────────────────────────────────────
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
-# ── Sidebar ──────────────────────────────────────────────────────────────────
 st.sidebar.header("Select Project")
 projects = list_projects()
 selected = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
 
-# ── Phase filter ─────────────────────────────────────────────────────────────
-phase_options = ["preliminar", "gross", "fine"]
+phase_options = [ConstructionPhase[mn].value for mn in ConstructionPhase._member_names_]
 selected_phases = st.sidebar.multiselect(
     "Construction Phases",
     options=phase_options,
     default=phase_options
 )
 
-# ── Main view ────────────────────────────────────────────────────────────────
 st.title(f"🏗️ Project: {selected}")
 
 if selected != "(none)":
