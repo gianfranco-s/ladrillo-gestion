@@ -1,4 +1,4 @@
-project_id,construction_phase,floor_nr,material_type,material_name,material_description,brand,unit,quantity,unit_price,total_materials,date_bought,date_use_intended,date_use_real
+project_id,phase,floor_nr,material_type,material_name,material_description,brand,unit,quantity,unit_price,total_materials,date_bought,date_use_intended,date_use_real
 101,preliminar,0,preliminary_tasks,Site Fencing,Temporary perimeter fencing for security,SecureCo,meter,50,$12.50,$625.00,2025-04-11,2025-04-12,2025-04-12
 101,preliminar,0,foundation,Cement Bags,High-resistance Portland cement,Holcim,bag,100,$7.80,$780.00,2025-04-27,2025-04-29,2025-05-01
 101,gross,0,structure,Rebar Steel,12mm reinforced steel rods for columns,AceroArgentino,kg,500,$1.20,$600.00,2025-05-01,2025-05-03,2025-05-04

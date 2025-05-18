@@ -35,10 +35,10 @@ if selected != "(none)":
     df = fetch_project_data(selected)
 
     # ── Phase filtering ───────────────────────────────────────────────────────
-    if "construction_phase" in df.columns:
-        df = df[df["construction_phase"].isin(selected_phases)]
+    if "phase" in df.columns:
+        df = df[df["phase"].isin(selected_phases)]
     else:
-        st.warning("No `construction_phase` column found to filter on.")
+        st.warning("No `phase` column found to filter on.")
 
     # ── Parse date columns ────────────────────────────────────────────────────
     for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):
