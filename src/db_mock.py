@@ -90,3 +90,11 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
         "total_price_real": "Real",
     })
     return long
+
+
+def compute_progress(project_data: pd.DataFrame) -> float:
+    total = len(project_data)
+    if total == 0:
+        return 0.0
+    completed = project_data["date_use_real"].notna().sum() if "date_use_real" in project_data.columns else 0
+    return completed / total if total > 0 else 0.0

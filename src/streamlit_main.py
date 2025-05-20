@@ -8,6 +8,7 @@ import plotly.express as px
 from db_mock import (list_projects,
                      get_aggregated_spending_data,
                      insert_building_material,
+                     compute_progress,
                      fetch_project_data,)
 from db.models import ConstructionPhase, BuildingMaterial
 
@@ -17,17 +18,24 @@ st.sidebar.header("Select Project")
 projects = list_projects()
 selected_project = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
 
-phase_options = [ConstructionPhase[mn].value for mn in ConstructionPhase._member_names_]
-selected_phases = st.sidebar.multiselect(
-    "Construction Phases",
-    options=phase_options,
-    default=phase_options
-)
 
 st.title(f"🏗️ Project: {selected_project}")
 
 if selected_project != "(none)":
     project_data = fetch_project_data(selected_project)
+
+    progress = compute_progress(project_data)
+
+    st.sidebar.subheader(f"Completion Progress ({progress*100:.1f}%)")
+    st.sidebar.progress(progress)
+
+    phase_options = [ConstructionPhase[mn].value for mn in ConstructionPhase._member_names_]
+    selected_phases = st.sidebar.multiselect(
+        "Construction Phases",
+        options=phase_options,
+        default=phase_options
+    )
+
     long = get_aggregated_spending_data(project_data, selected_phases)
 
     st.subheader("📊 Weekly Materials Spending (Intended vs. Real)")
