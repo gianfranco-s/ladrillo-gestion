@@ -14,6 +14,7 @@ Steps to complete the prototype:
 - [x] Input data with empty dates
 - [x] Edit data
 - [x] Show progress bar for project status
+- [ ] Add upload button
 - [ ] Add table for materials description
 - [ ] Add table and visualization for workers spending
 - [ ] Add table and visualization for project info
