@@ -1,4 +1,4 @@
-from dataclasses import dataclass, field
+from dataclasses import dataclass, asdict
 from datetime import date
 from enum import StrEnum
 from typing import List, Optional, Any, Dict
@@ -20,11 +20,10 @@ class BuildingMaterial:
     date_bought: date
     date_use_intended: Optional[date] = None
     date_use_real: Optional[date]     = None
-    metadata: Dict[str, Any] = field(default_factory=dict)
-    """
-    Use `metadata` for any extra fields during the PoC,
-    e.g. {"supplier": "...", "notes": "..."} 
-    """
+    # metadata: Dict[str, Any] = field(default_factory=dict)  # for extra fields like supplier, notes, etc
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
 
 # Unused for now
 # @dataclass

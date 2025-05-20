@@ -1,6 +1,8 @@
 import os
 import pandas as pd
 
+from db.models import BuildingMaterial
+
 
 DATA_DIR = os.getenv("DATA_DIR", "/tmp")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
@@ -15,13 +17,13 @@ def fetch_project_data(project_id: str, data: list[dict] = data_store) -> pd.Dat
     return pd.DataFrame([rec for rec in data if rec["project_id"] == project_id])
 
 
-def insert_data(new_record: dict) -> None:
+def insert_building_material(new_record: BuildingMaterial) -> None:
     """
     Append new_record to in-memory store and to the CSV file.
     Assumes the CSV already exists and has a header row.
     """
-    _insert_data_in_memory(new_record)
-    _insert_data_to_file(new_record)
+    _insert_data_in_memory(new_record.to_dict())
+    _insert_data_to_file(new_record.to_dict())
 
 
 def _insert_data_in_memory(new_record: dict, data: list[dict] = data_store) -> None:
