@@ -13,7 +13,7 @@ Steps to complete the prototype:
 - [x] Input data form
 - [x] Input data with empty dates
 - [x] Edit data
-- [ ] Show progress bar for project status
+- [x] Show progress bar for project status
 - [ ] Add table for materials description
 - [ ] Add table and visualization for workers spending
 - [ ] Add table and visualization for project info
