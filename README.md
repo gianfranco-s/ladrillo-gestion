@@ -1,5 +1,6 @@
 # Ladrillo Gestión
 PoC for construction management
+![image](https://github.com/user-attachments/assets/81552324-8033-44fa-b890-490734398756)
 
 
 Run locally (no Docker)
