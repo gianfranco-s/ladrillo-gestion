@@ -4,14 +4,14 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from db_mock import list_projects, fetch_project_data, insert_data
+from db_mock import list_projects, get_aggregated_spending_data, insert_data
 from db.models import ConstructionPhase
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
 st.sidebar.header("Select Project")
 projects = list_projects()
-selected = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
+selected_project = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
 
 phase_options = [ConstructionPhase[mn].value for mn in ConstructionPhase._member_names_]
 selected_phases = st.sidebar.multiselect(
@@ -20,70 +20,13 @@ selected_phases = st.sidebar.multiselect(
     default=phase_options
 )
 
-st.title(f"🏗️ Project: {selected}")
+st.title(f"🏗️ Project: {selected_project}")
 
-if selected != "(none)":
-    df = fetch_project_data(selected)
+if selected_project != "(none)":
+    
 
     # ── Phase filtering ───────────────────────────────────────────────────────
-    if "phase" in df.columns:
-        df = df[df["phase"].isin(selected_phases)]
-    else:
-        st.warning("No `phase` column found to filter on.")
-
-    # ── Parse date columns ────────────────────────────────────────────────────
-    for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):
-        if col in df.columns:
-            df[col.replace("fecha_", "date_")] = pd.to_datetime(df[col])
-
-    # ── Clean spending column ──────────────────────────────────────────────────
-    if "total_materials" not in df.columns:
-        st.error("Missing `total_materials` column.")
-        st.stop()
-
-    df["total_materials"] = (
-        df["total_materials"]
-          .astype(str)
-          .str.replace(r"[\$,]", "", regex=True)
-          .astype(float)
-    )
-
-    # ── Compute ISO-week start dates ──────────────────────────────────────────
-    df["week_intended"] = df["date_use_intended"].dt.to_period("W").apply(lambda r: r.start_time)
-    df["week_real"]     = df["date_use_real"].dt.to_period("W").apply(lambda r: r.start_time)
-
-    # ── Aggregate weekly spending ─────────────────────────────────────────────
-    weekly_intended = (
-        df.groupby("week_intended")["total_materials"]
-          .sum()
-          .reset_index()
-          .rename(columns={"week_intended": "week"})
-    )
-    weekly_real = (
-        df.groupby("week_real")["total_materials"]
-          .sum()
-          .reset_index()
-          .rename(columns={"week_real": "week"})
-    )
-    combined = pd.merge(
-        weekly_intended,
-        weekly_real,
-        on="week",
-        how="outer",
-        suffixes=("_intended", "_real"),
-    ).sort_values("week").fillna(0)
-
-    # ── Melt for superimposed chart ────────────────────────────────────────────
-    long = combined.melt(
-        id_vars="week",
-        value_vars=["total_materials_intended", "total_materials_real"],
-        var_name="Spending Type",
-        value_name="Spending",
-    )
-    long["Spending Type"] = long["Spending Type"].map({
-        "total_materials_intended": "Intended",
-        "total_materials_real": "Real",
-    })
+    long = get_aggregated_spending_data(selected_project, selected_phases)
 
     # ── Plot at the top ───────────────────────────────────────────────────────
     st.subheader("📊 Weekly Materials Spending (Intended vs. Real)")
@@ -123,8 +66,8 @@ if selected != "(none)":
 
         if submitted:
             new_record = {
-                "project_id": selected,
-                "construction_phase": phase,
+                "project_id": selected_project,
+                "phase": phase,
                 "floor_nr": floor_nr,
                 "material_id": material_id,
                 "total_price": total_price,
