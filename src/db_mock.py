@@ -7,6 +7,7 @@ from db.models import BuildingMaterial
 DATA_DIR = os.getenv("DATA_DIR", "/tmp")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
 data_store = pd.read_csv(DATA_FILE).to_dict(orient="records")
+COLUMN_ORDER = pd.read_csv(DATA_FILE, nrows=0).columns.tolist()
 
 
 def list_projects(data: list[dict] = data_store):
@@ -28,13 +29,19 @@ def insert_building_material(new_record: BuildingMaterial) -> None:
 
 def _insert_data_in_memory(new_record: dict, data: list[dict] = data_store) -> None:
     data.append(new_record)
+    print(data)
 
 
-def _insert_data_to_file(new_record: dict, data_file: str = DATA_FILE) -> None:
-    pd.DataFrame([new_record]).to_csv(
+def _insert_data_to_file(new_record: dict, data_file: str = DATA_FILE, column_order: list = COLUMN_ORDER) -> None:
+    df_new = pd.DataFrame([new_record])
+
+    # Reindex to match header exactly (missing keys → NaN, extra keys dropped)
+    df_new = df_new.reindex(columns=column_order)
+    print(df_new)
+    df_new.to_csv(
         data_file,
-        mode="a",
-        header=False,
+        mode="a",        # append row
+        header=False,    # no header line
         index=False
     )
 
