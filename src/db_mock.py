@@ -37,8 +37,8 @@ def _insert_data_to_file(new_record: dict, data_file: str = DATA_FILE) -> None:
     )
 
 
-def get_aggregated_spending_data(selected_project: str, selected_phases: list[str]) -> pd.DataFrame:
-    df = fetch_project_data(selected_project)
+def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[str]) -> pd.DataFrame:
+    df = dataset.copy()
     df = df[df["phase"].isin(selected_phases)]
 
     for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):

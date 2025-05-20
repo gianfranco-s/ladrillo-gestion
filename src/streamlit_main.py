@@ -1,10 +1,14 @@
+import time
 from datetime import datetime
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from db_mock import list_projects, get_aggregated_spending_data, insert_data
+from db_mock import (list_projects,
+                     get_aggregated_spending_data,
+                     insert_data,
+                     fetch_project_data,)
 from db.models import ConstructionPhase
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
@@ -23,12 +27,9 @@ selected_phases = st.sidebar.multiselect(
 st.title(f"🏗️ Project: {selected_project}")
 
 if selected_project != "(none)":
-    
+    project_data = fetch_project_data(selected_project)
+    long = get_aggregated_spending_data(project_data, selected_phases)
 
-    # ── Phase filtering ───────────────────────────────────────────────────────
-    long = get_aggregated_spending_data(selected_project, selected_phases)
-
-    # ── Plot at the top ───────────────────────────────────────────────────────
     st.subheader("📊 Weekly Materials Spending (Intended vs. Real)")
     fig = px.line(
         long,
@@ -46,13 +47,12 @@ if selected_project != "(none)":
     fig.update_layout(legend_title_text="")
     st.plotly_chart(fig, use_container_width=True)
 
-    # ── Toggleable data table ─────────────────────────────────────────────────
+    # Toggle data table
     if st.checkbox("Show data table"):
         st.subheader("📋 Loaded Data")
-        st.dataframe(df)
+        st.dataframe(project_data)
     
-    # ── Add New Data Row Form ───────────────────────────────────────────────
-    st.subheader("➕ Add New Data Row")
+    # Add New Data Row Form
     with st.expander("Click to add a new record"):
         with st.form("add_row_form"):
             phase = st.selectbox("Construction Phase", phase_options)
@@ -78,7 +78,8 @@ if selected_project != "(none)":
 
             insert_data(new_record)
             st.success("✅ New row added!")
-            st.rerun()
+            time.sleep(1)
+            st.rerun()  # Maybe use container for chart and data table
 
 else:
     st.info("Upload data to begin or create records via the uploader.")
