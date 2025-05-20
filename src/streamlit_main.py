@@ -1,8 +1,10 @@
+from datetime import datetime
+
 import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-from db_mock import list_projects, fetch_project_data
+from db_mock import list_projects, fetch_project_data, insert_data
 from db.models import ConstructionPhase
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
@@ -105,6 +107,35 @@ if selected != "(none)":
     if st.checkbox("Show data table"):
         st.subheader("📋 Loaded Data")
         st.dataframe(df)
+    
+    # ── Add New Data Row Form ───────────────────────────────────────────────
+    st.subheader("➕ Add New Data Row")
+    with st.expander("Click to add a new record"):
+        with st.form("add_row_form"):
+            phase = st.selectbox("Construction Phase", phase_options)
+            floor_nr = st.number_input("Floor Number", min_value=0, step=1, value=0)
+            material_id = st.text_input("Material ID (integer)")
+            total_price = st.number_input("Total Building Materials Price (USD)", min_value=0.0, value=0.0)
+            date_bought = st.date_input("Date Bought", value=datetime.today())
+            date_use_intended = st.date_input("Date Intended for Use", value=datetime.today())
+            date_use_real = st.date_input("Date Realized Use", value=datetime.today())
+            submitted = st.form_submit_button("Save Row")
+
+        if submitted:
+            new_record = {
+                "project_id": selected,
+                "construction_phase": phase,
+                "floor_nr": floor_nr,
+                "material_id": material_id,
+                "total_price": total_price,
+                "date_bought": date_bought.strftime("%Y-%m-%d"),
+                "date_use_intended": date_use_intended.strftime("%Y-%m-%d"),
+                "date_use_real": date_use_real.strftime("%Y-%m-%d"),
+            }
+
+            insert_data(new_record)
+            st.success("✅ New row added!")
+            st.rerun()
 
 else:
     st.info("Upload data to begin or create records via the uploader.")

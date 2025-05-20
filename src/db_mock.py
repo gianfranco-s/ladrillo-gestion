@@ -1,11 +1,18 @@
+import os
 import pandas as pd
 
-encrypted_store = pd.read_csv("/tmp/test_data.csv").to_dict(orient="records")
+
+DATA_DIR = os.getenv("DATA_DIR", "/tmp")
+data_store = pd.read_csv(f"{DATA_DIR}/test_data.csv").to_dict(orient="records")
 
 
-def list_projects(data=encrypted_store):
+def list_projects(data: list[dict] = data_store):
     return sorted({rec["project_id"] for rec in data})
 
 
-def fetch_project_data(project_id: str, data=encrypted_store) -> pd.DataFrame:
+def fetch_project_data(project_id: str, data: list[dict] = data_store) -> pd.DataFrame:
     return pd.DataFrame([rec for rec in data if rec["project_id"] == project_id])
+
+
+def insert_data(new_record: dict, data: list[dict] = data_store) -> None:
+    data.append(new_record)

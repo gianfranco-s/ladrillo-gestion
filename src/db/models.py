@@ -16,28 +16,24 @@ class BuildingMaterial:
     project_id: str # FK → ProjectInfo.project_id
     total_price: float
     phase: ConstructionPhase
-    name: str
-    purchase_date: date
-    intended_use_date: Optional[date] = None
-    real_use_date: Optional[date]     = None
+    floor_nr: int
+    date_bought: date
+    date_use_intended: Optional[date] = None
+    date_use_real: Optional[date]     = None
     metadata: Dict[str, Any] = field(default_factory=dict)
     """
     Use `metadata` for any extra fields during the PoC,
     e.g. {"supplier": "...", "notes": "..."} 
     """
 
-@dataclass
-class ProjectInfo:
-    project_id: str                   # PK
-    name: str                         # was project_name
-    build_surface_m2: float
-    terrain_surface_m2: float
-    floors_total: int
-    materials: List[BuildingMaterial] = field(default_factory=list)
-    created_at: Optional[date] = None
-    updated_at: Optional[date] = None
-    """
-    Once you stabilize your schema you can
-    set created_at/updated_at automatically
-    (e.g. in a DB trigger or in your service layer).
-    """
+# Unused for now
+# @dataclass
+# class ProjectInfo:
+#     project_id: str                   # PK
+#     name: str                         # was project_name
+#     build_surface_m2: float
+#     terrain_surface_m2: float
+#     floors_total: int
+#     materials: List[BuildingMaterial] = field(default_factory=list)
+#     created_at: Optional[date] = None
+#     updated_at: Optional[date] = None
