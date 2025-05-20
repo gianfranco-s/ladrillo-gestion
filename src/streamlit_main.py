@@ -9,7 +9,9 @@ from db_mock import (list_projects,
                      get_aggregated_spending_data,
                      insert_building_material,
                      compute_progress,
-                     fetch_project_data,)
+                     fetch_project_data,
+                     DATA_FILE,
+                     data_store)
 from db.models import ConstructionPhase, BuildingMaterial
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
@@ -55,12 +57,17 @@ if selected_project != "(none)":
     fig.update_layout(legend_title_text="")
     st.plotly_chart(fig, use_container_width=True)
 
-    # Toggle data table
     if st.checkbox("Show data table"):
         st.subheader("📋 Loaded Data")
-        st.dataframe(project_data)
-    
-    # Add New Data Row Form
+        edited_df = st.data_editor(project_data, num_rows="fixed", use_container_width=True)
+        if st.button("💾 Save edits"):
+            other = [r for r in data_store if r["project_id"] != selected_project]
+            updated = other + edited_df.to_dict(orient="records")
+            data_store[:] = updated
+            pd.DataFrame(updated).to_csv(DATA_FILE, index=False)
+            st.success("✅ Changes saved!")
+            st.rerun()
+
     with st.expander("Click to add a new record"):
         specify_date_bought = st.checkbox("Specify purchase date", value=True)
         specify_date_intended = st.checkbox("Specify intended use date", value=True)

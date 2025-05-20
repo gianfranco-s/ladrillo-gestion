@@ -12,7 +12,7 @@ Steps to complete the prototype:
 - [x] Add table and visualization for building materials spending
 - [x] Input data form
 - [x] Input data with empty dates
-- [ ] Edit data
+- [x] Edit data
 - [ ] Show progress bar for project status
 - [ ] Add table for materials description
 - [ ] Add table and visualization for workers spending
