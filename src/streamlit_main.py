@@ -26,7 +26,7 @@ st.title(f"🏗️ Project: {selected_project}")
 if selected_project != "(none)":
     project_data = fetch_project_data(selected_project)
 
-    progress = compute_progress(project_data)
+    progress = compute_progress(selected_project)
 
     st.sidebar.subheader(f"Completion Progress ({progress*100:.1f}%)")
     st.sidebar.progress(progress)
@@ -61,6 +61,7 @@ if selected_project != "(none)":
         st.subheader("📋 Loaded Data")
         edited_df = st.data_editor(project_data, num_rows="fixed", use_container_width=True)
         if st.button("💾 Save edits"):
+            # Move to db_mock
             other = [r for r in data_store if r["project_id"] != selected_project]
             updated = other + edited_df.to_dict(orient="records")
             data_store[:] = updated
