@@ -62,24 +62,39 @@ if selected_project != "(none)":
     
     # Add New Data Row Form
     with st.expander("Click to add a new record"):
+        specify_date_bought = st.checkbox("Specify purchase date", value=True)
+        specify_date_intended = st.checkbox("Specify intended use date", value=True)
+        specify_date_real = st.checkbox("Specify real use date", value=False)
+
         with st.form("add_row_form"):
-            building_material_record = BuildingMaterial(
-                project_id = selected_project,
-                material_id = st.text_input("Material ID (integer)"),
-                total_price = st.number_input("Total Building Materials Price (USD)", min_value=0.0, value=0.0),
-                phase = st.selectbox("Construction Phase", phase_options),
-                floor_nr = st.number_input("Floor Number", min_value=0, step=1, value=0),
-                date_bought = st.date_input("Date Bought", value=datetime.today()),
-                date_use_intended = st.date_input("Date Intended for Use", value=datetime.today()),
-                date_use_real = st.date_input("Date Realized Use", value=datetime.today()),
+            material_id = st.text_input("Building Material ID (integer)")
+            total_price = st.number_input(
+                "Total Building Materials Price (USD)", min_value=0.0, value=0.0
             )
+            phase = st.selectbox("Construction Phase", phase_options)
+            floor_nr = st.number_input("Floor Number", min_value=0, step=1, value=0)
+
+            date_bought = st.date_input("Date Bought", value=datetime.today()) if specify_date_bought else None
+            date_use_intended = st.date_input("Date Intended for Use", value=datetime.today()) if specify_date_intended else None
+            date_use_real = st.date_input("Date Realized Use", value=datetime.today()) if specify_date_real else None
+
             submitted = st.form_submit_button("Save Row")
 
         if submitted:
-            insert_building_material(building_material_record)
+            bm = BuildingMaterial(
+                project_id=selected_project,
+                material_id=material_id,
+                total_price=total_price,
+                phase=phase,
+                floor_nr=floor_nr,
+                date_bought=date_bought,
+                date_use_intended=date_use_intended,
+                date_use_real=date_use_real,
+            )
+            insert_building_material(bm)
             st.success("✅ New row added!")
             time.sleep(1)
-            st.rerun()  # Maybe use container for chart and data table
+            st.rerun()
 
 else:
     st.info("Upload data to begin or create records via the uploader.")

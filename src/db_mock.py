@@ -27,7 +27,7 @@ def insert_building_material(new_record: BuildingMaterial) -> None:
 
 
 def _insert_data_in_memory(new_record: dict, data: list[dict] = data_store) -> None:
-    data_store.append(new_record)
+    data.append(new_record)
 
 
 def _insert_data_to_file(new_record: dict, data_file: str = DATA_FILE) -> None:
@@ -43,9 +43,10 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
     df = dataset.copy()
     df = df[df["phase"].isin(selected_phases)]
 
-    for col in ("date_use_intended", "date_use_real", "date_bought", "fecha_uso", "fecha_compra"):
-        if col in df.columns:
-            df[col.replace("fecha_", "date_")] = pd.to_datetime(df[col])
+    # ensure all three date columns are real datetimes, NaT on bad/missing
+    for dc in ("date_bought", "date_use_intended", "date_use_real"):
+        if dc in df.columns:
+            df[dc] = pd.to_datetime(df[dc], errors="coerce")
 
     df["total_price"] = (
         df["total_price"]
@@ -54,10 +55,10 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
           .astype(float)
     )
 
-    df["week_intended"] = df["date_use_intended"].dt.to_period("W").apply(lambda r: r.start_time)
-    df["week_real"] = df["date_use_real"].dt.to_period("W").apply(lambda r: r.start_time)
-
-    # Aggregate weekly spending
+    # — compute ISO-week start times, safely
+    df["week_intended"] = df["date_use_intended"].dt.to_period("W").dt.start_time
+    df["week_real"] = df["date_use_real"].dt.to_period("W").dt.start_time
+    
     weekly_intended = (
         df.groupby("week_intended")["total_price"]
           .sum()
@@ -70,6 +71,7 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
           .reset_index()
           .rename(columns={"week_real": "week"})
     )
+
     combined = pd.merge(
         weekly_intended,
         weekly_real,
@@ -78,7 +80,6 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
         suffixes=("_intended", "_real"),
     ).sort_values("week").fillna(0)
 
-    # Melt for superimposed chart
     long = combined.melt(
         id_vars="week",
         value_vars=["total_price_intended", "total_price_real"],
