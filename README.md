@@ -8,10 +8,13 @@ uv venv
 DATA_DIR=./ uv run streamlit run src/streamlit_main.py
 ```
 
-To do:
-* add plot to show workers salary
-* show progress bar for project status
-* Input data form
+Steps to complete the prototype:
+- [x] Add table and visualization for building materials spending
+- [x] Input data form
+- [ ] Show progress bar for project status
+- [ ] Add table for materials description
+- [ ] Add table and visualization for workers spending
+- [ ] Add table and visualization for project info
  
 ## Docker
 Build
