@@ -1,3 +1,4 @@
+import os
 import time
 from datetime import datetime
 
@@ -20,6 +21,21 @@ projects = list_projects(data_store)
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
+if len(projects) == 0:
+    uploaded = st.sidebar.file_uploader("📤 Upload projects CSV", type=["csv"])
+
+    if uploaded is None:
+        st.stop()
+
+    df = pd.read_csv(uploaded)
+
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+    df.to_csv(DATA_FILE, index=False)
+
+    db_mock._load_data_store()
+    st.rerun()
+    
+    
 st.sidebar.header("Select Project")
 selected_project = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
 

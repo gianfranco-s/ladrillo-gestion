@@ -19,7 +19,10 @@ class DBMockFile:
             self.data_store = self._fetch_data_from_file(self._data_file)
             self.column_order = self._fetch_column_order(self._data_file)
         else:
-            raise FileNotFoundError(f"Data file {self._data_file} not found.")
+            self.data_store = []
+            self.column_order = []
+
+            # raise FileNotFoundError(f"Data file {self._data_file} not found.")
 
     @staticmethod
     def _fetch_column_order(data_file: str) -> list[str]:
