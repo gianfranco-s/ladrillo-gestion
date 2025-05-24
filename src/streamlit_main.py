@@ -13,7 +13,7 @@ from db_mock import (list_projects,
                      DATA_FILE,
                      DBMockFile)
 from db.models import ConstructionPhase, BuildingMaterial
-from utils import hide_deploy_button
+from button_utils import hide_deploy, remove_database_file
 from plotters import plot_materials_spending
 
 db_mock = DBMockFile()
@@ -23,7 +23,7 @@ projects = list_projects(data_store)
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
-hide_deploy_button()
+hide_deploy()
 
 if len(projects) == 0:
     uploaded = st.sidebar.file_uploader("📤 Upload projects CSV", type=["csv"])
@@ -112,3 +112,5 @@ if selected_project != "(none)":
 
 else:
     st.info("Upload data to begin or create records via the uploader.")
+
+remove_database_file(DATA_FILE)

@@ -1,6 +1,7 @@
 import streamlit as st
 
-def hide_deploy_button() -> None:
+
+def hide_deploy() -> None:
     """
     Hides the deploy button and the top-right menu in Streamlit.
     """
@@ -18,3 +19,14 @@ def hide_deploy_button() -> None:
     </style>
     """
     st.markdown(hide_deploy_css, unsafe_allow_html=True)
+
+import os
+import streamlit as st
+
+def remove_database_file(data_file: str) -> None:
+  if st.sidebar.button("🗑️ Remove Data & Restart"):
+    if os.path.exists(data_file):
+        os.remove(data_file)
+
+    st.sidebar.success("Data removed. Reloading…")
+    st.rerun()

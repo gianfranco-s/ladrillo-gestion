@@ -16,9 +16,7 @@ Steps to complete the prototype:
 - [x] Edit data
 - [x] Show progress bar for project status
 - [x] Add upload button
-- [ ] Add table for materials description
-- [ ] Add table and visualization for workers spending
-- [ ] Add table and visualization for project info
+- [x] Add reset system button 
  
 ## Docker
 Build
