@@ -7,26 +7,28 @@ import plotly.express as px
 
 from db_mock import (list_projects,
                      get_aggregated_spending_data,
-                     insert_building_material,
                      compute_progress,
                      fetch_project_data,
                      DATA_FILE,
-                     data_store)
+                     DBMockFile)
 from db.models import ConstructionPhase, BuildingMaterial
+
+db_mock = DBMockFile()
+data_store = db_mock.data_store
+column_order = db_mock.column_order
+projects = list_projects(data_store)
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
 
 st.sidebar.header("Select Project")
-projects = list_projects()
 selected_project = st.sidebar.selectbox("Project ID", projects if projects else ["(none)"])
-
 
 st.title(f"🏗️ Project: {selected_project}")
 
 if selected_project != "(none)":
-    project_data = fetch_project_data(selected_project)
+    project_data = fetch_project_data(selected_project, data_store=data_store)
 
-    progress = compute_progress(selected_project)
+    progress = compute_progress(selected_project, project_data)
 
     st.sidebar.subheader(f"Completion Progress ({progress*100:.1f}%)")
     st.sidebar.progress(progress)
@@ -99,7 +101,7 @@ if selected_project != "(none)":
                 date_use_intended=date_use_intended,
                 date_use_real=date_use_real,
             )
-            insert_building_material(bm)
+            db_mock.insert_building_material(bm)
             st.success("✅ New row added!")
             time.sleep(1)
             st.rerun()

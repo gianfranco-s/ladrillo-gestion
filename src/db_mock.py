@@ -7,63 +7,60 @@ from db.models import BuildingMaterial
 DATA_DIR = os.getenv("DATA_DIR", "/tmp")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
 
-class DBMock:
+class DBMockFile:
     def __init__(self, data_file: str = DATA_FILE, data_dir: str = DATA_DIR):
-        self.data_file = data_file
-        self.data_dir = data_dir
-        
-        column_order = self._fetch_column_order() if os.path.exists(self.data_file) else []
-        data_store = self._fetch_data_from_file() if os.path.exists(self.data_file) else []
+        self._data_dir = data_dir
+        self._data_file = data_file
 
-        self.colum_order = column_order
-        self.data_store = data_store
+        self._load_data_store()
 
-    def _fetch_column_order(self) -> list[str]:
-        return pd.read_csv(self.data_file, nrows=0).columns.tolist()
+    def _load_data_store(self) -> None:
+        if os.path.exists(self._data_file):
+            self.data_store = self._fetch_data_from_file(self._data_file)
+            self.column_order = self._fetch_column_order(self._data_file)
+        else:
+            raise FileNotFoundError(f"Data file {self._data_file} not found.")
 
-    def _fetch_data_from_file(self) -> list[dict]:
-        return pd.read_csv(self.data_file).to_dict(orient="records")
+    @staticmethod
+    def _fetch_column_order(data_file: str) -> list[str]:
+        return pd.read_csv(data_file, nrows=0).columns.tolist()
+
+    @staticmethod
+    def _fetch_data_from_file(data_file) -> list[dict]:
+        return pd.read_csv(data_file).to_dict(orient="records")
+
+    def insert_building_material(self, new_record: BuildingMaterial) -> None:
+        """
+        Append new_record to in-memory store and to the CSV file.
+        Assumes the CSV already exists and has a header row.
+        """
+
+        df_new = pd.DataFrame([new_record.to_dict()])
+
+        # Reindex to match header exactly (missing keys → NaN, extra keys dropped)
+        df_new = df_new.reindex(columns=self.column_order)
+
+        df_new.to_csv(
+            self._data_file,
+            mode="a",        # append row
+            header=False,    # no header line
+            index=False
+        )
+
+        self._load_data_store()
+    
+
+# _db_mock = DBMock()
+# data_store = _db_mock.data_store
+# COLUMN_ORDER = _db_mock.colum_order
 
 
-_db_mock = DBMock()
-data_store = _db_mock.data_store
-COLUMN_ORDER = _db_mock.colum_order
+def list_projects(data_store: list[dict]):
+    return sorted({rec["project_id"] for rec in data_store})
 
 
-def list_projects(data: list[dict] = data_store):
-    return sorted({rec["project_id"] for rec in data})
-
-
-def fetch_project_data(project_id: str, get_data_store: callable = _db_mock._fetch_data_from_file) -> pd.DataFrame:
-    data_store = get_data_store()
+def fetch_project_data(project_id: str, data_store: list[dict]) -> pd.DataFrame:
     return pd.DataFrame([rec for rec in data_store if rec["project_id"] == project_id])
-
-
-def insert_building_material(new_record: BuildingMaterial) -> None:
-    """
-    Append new_record to in-memory store and to the CSV file.
-    Assumes the CSV already exists and has a header row.
-    """
-    _insert_data_in_memory(new_record.to_dict())
-    _insert_data_to_file(new_record.to_dict())
-
-
-def _insert_data_in_memory(new_record: dict, data: list[dict] = data_store) -> None:
-    data.append(new_record)
-
-
-def _insert_data_to_file(new_record: dict, data_file: str = DATA_FILE, column_order: list = COLUMN_ORDER) -> None:
-    df_new = pd.DataFrame([new_record])
-
-    # Reindex to match header exactly (missing keys → NaN, extra keys dropped)
-    df_new = df_new.reindex(columns=column_order)
-
-    df_new.to_csv(
-        data_file,
-        mode="a",        # append row
-        header=False,    # no header line
-        index=False
-    )
 
 
 def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[str]) -> pd.DataFrame:
@@ -120,8 +117,7 @@ def get_aggregated_spending_data(dataset: pd.DataFrame, selected_phases: list[st
     return long
 
 
-def compute_progress(selected_project: str) -> float:
-    project_data = fetch_project_data(selected_project)
+def compute_progress(selected_project: str, project_data: pd.DataFrame) -> float:
     total = len(project_data)
     if total == 0:
         return 0.0
