@@ -14,6 +14,7 @@ from db_mock import (list_projects,
                      DBMockFile)
 from db.models import ConstructionPhase, BuildingMaterial
 from utils import hide_deploy_button
+from plotters import plot_materials_spending
 
 db_mock = DBMockFile()
 data_store = db_mock.data_store
@@ -59,24 +60,8 @@ if selected_project != "(none)":
         default=phase_options
     )
 
-    long = get_aggregated_spending_data(project_data, selected_phases)
-
-    st.subheader("📊 Weekly Materials Spending (Intended vs. Real)")
-    fig = px.line(
-        long,
-        x="week",
-        y="Spending",
-        color="Spending Type",
-        markers=True,
-        labels={
-            "week": "Week Start",
-            "Spending": "Materials Spending (USD)",
-            "Spending Type": ""
-        },
-    )
-    fig.update_xaxes(dtick="W1", tickformat="%Y-%m-%d")
-    fig.update_layout(legend_title_text="")
-    st.plotly_chart(fig, use_container_width=True)
+    spending_data = get_aggregated_spending_data(project_data, selected_phases)
+    st.plotly_chart(plot_materials_spending(spending_data), use_container_width=True)
 
     if st.checkbox("Show data table"):
         st.subheader("📋 Loaded Data")
@@ -107,7 +92,7 @@ if selected_project != "(none)":
             date_use_intended = st.date_input("Date Intended for Use", value=datetime.today()) if specify_date_intended else None
             date_use_real = st.date_input("Date Realized Use", value=datetime.today()) if specify_date_real else None
 
-            submitted = st.form_submit_button("Save Row")
+            submitted = st.form_submit_button("💾 Save Row")
 
         if submitted:
             bm = BuildingMaterial(
