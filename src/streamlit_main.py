@@ -13,6 +13,7 @@ from db_mock import (list_projects,
                      DATA_FILE,
                      DBMockFile)
 from db.models import ConstructionPhase, BuildingMaterial
+from utils import hide_deploy_button
 
 db_mock = DBMockFile()
 data_store = db_mock.data_store
@@ -20,6 +21,8 @@ column_order = db_mock.column_order
 projects = list_projects(data_store)
 
 st.set_page_config(layout="wide", page_title="🏗️ Ladrillo Gestión")
+
+hide_deploy_button()
 
 if len(projects) == 0:
     uploaded = st.sidebar.file_uploader("📤 Upload projects CSV", type=["csv"])
