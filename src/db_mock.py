@@ -6,12 +6,21 @@ from db.models import BuildingMaterial
 
 DATA_DIR = os.getenv("DATA_DIR", "/tmp")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
-COLUMN_ORDER = pd.read_csv(DATA_FILE, nrows=0).columns.tolist()
+
+
+def _fetch_column_order(data_file: str = DATA_FILE) -> list[str]:
+    if not os.path.exists(data_file):
+        return []
+    return pd.read_csv(data_file, nrows=0).columns.tolist()
+
 
 def _fetch_data_from_file(data_file: str = DATA_FILE) -> list[dict]:
+    if not os.path.exists(data_file):
+        return []
     return pd.read_csv(data_file).to_dict(orient="records")
 
 data_store = _fetch_data_from_file()
+COLUMN_ORDER = _fetch_column_order()
 
 def list_projects(data: list[dict] = data_store):
     return sorted({rec["project_id"] for rec in data})
