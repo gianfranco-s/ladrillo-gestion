@@ -5,7 +5,7 @@ PoC for construction management
 
 Run locally (no Docker)
 ```sh
-uv venv
+# uv sync  # to install packages
 DATA_DIR=./ uv run streamlit run src/streamlit_main.py
 ```
 
