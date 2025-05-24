@@ -4,7 +4,7 @@ import pandas as pd
 from db.models import BuildingMaterial
 
 
-DATA_DIR = os.getenv("DATA_DIR", "/tmp")
+DATA_DIR = os.getenv("DATA_DIR", "/tmp/test_data")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
 
 class DBMockFile:
