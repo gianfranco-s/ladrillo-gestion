@@ -7,27 +7,35 @@ from db.models import BuildingMaterial
 DATA_DIR = os.getenv("DATA_DIR", "/tmp")
 DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
 
+class DBMock:
+    def __init__(self, data_file: str = DATA_FILE, data_dir: str = DATA_DIR):
+        self.data_file = data_file
+        self.data_dir = data_dir
+        
+        column_order = self._fetch_column_order() if os.path.exists(self.data_file) else []
+        data_store = self._fetch_data_from_file() if os.path.exists(self.data_file) else []
 
-def _fetch_column_order(data_file: str = DATA_FILE) -> list[str]:
-    if not os.path.exists(data_file):
-        return []
-    return pd.read_csv(data_file, nrows=0).columns.tolist()
+        self.colum_order = column_order
+        self.data_store = data_store
+
+    def _fetch_column_order(self) -> list[str]:
+        return pd.read_csv(self.data_file, nrows=0).columns.tolist()
+
+    def _fetch_data_from_file(self) -> list[dict]:
+        return pd.read_csv(self.data_file).to_dict(orient="records")
 
 
-def _fetch_data_from_file(data_file: str = DATA_FILE) -> list[dict]:
-    if not os.path.exists(data_file):
-        return []
-    return pd.read_csv(data_file).to_dict(orient="records")
+_db_mock = DBMock()
+data_store = _db_mock.data_store
+COLUMN_ORDER = _db_mock.colum_order
 
-data_store = _fetch_data_from_file()
-COLUMN_ORDER = _fetch_column_order()
 
 def list_projects(data: list[dict] = data_store):
     return sorted({rec["project_id"] for rec in data})
 
 
-def fetch_project_data(project_id: str) -> pd.DataFrame:
-    data_store = _fetch_data_from_file()
+def fetch_project_data(project_id: str, get_data_store: callable = _db_mock._fetch_data_from_file) -> pd.DataFrame:
+    data_store = get_data_store()
     return pd.DataFrame([rec for rec in data_store if rec["project_id"] == project_id])
 
 
