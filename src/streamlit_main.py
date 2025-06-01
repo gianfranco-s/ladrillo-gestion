@@ -10,7 +10,7 @@ from db_mock import (list_projects,
                      get_aggregated_spending_data,
                      compute_progress,
                      fetch_project_data,
-                     DATA_FILE,
+                     CONSTRUCTION_SPENDING_DATA,
                      DBMockFile)
 from db.models import ConstructionPhase, BuildingMaterial
 from button_utils import hide_deploy, remove_database_file
@@ -33,8 +33,8 @@ if len(projects) == 0:
 
     df = pd.read_csv(uploaded)
 
-    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
-    df.to_csv(DATA_FILE, index=False)
+    os.makedirs(os.path.dirname(CONSTRUCTION_SPENDING_DATA), exist_ok=True)
+    df.to_csv(CONSTRUCTION_SPENDING_DATA, index=False)
 
     db_mock._load_data_store()
     st.rerun()
@@ -71,7 +71,7 @@ if selected_project != "(none)":
             other = [r for r in data_store if r["project_id"] != selected_project]
             updated = other + edited_df.to_dict(orient="records")
             data_store[:] = updated
-            pd.DataFrame(updated).to_csv(DATA_FILE, index=False)
+            pd.DataFrame(updated).to_csv(CONSTRUCTION_SPENDING_DATA, index=False)
             st.success("✅ Changes saved!")
             st.rerun()
 
@@ -113,4 +113,4 @@ if selected_project != "(none)":
 else:
     st.info("Upload data to begin or create records via the uploader.")
 
-remove_database_file(DATA_FILE)
+remove_database_file(CONSTRUCTION_SPENDING_DATA)

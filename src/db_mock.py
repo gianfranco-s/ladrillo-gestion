@@ -5,10 +5,10 @@ from db.models import BuildingMaterial
 
 
 DATA_DIR = os.getenv("DATA_DIR", "/tmp/test_data")
-DATA_FILE = os.path.join(DATA_DIR, "test_data.csv")
+CONSTRUCTION_SPENDING_DATA = os.path.join(DATA_DIR, "_construction_spending.csv")
 
 class DBMockFile:
-    def __init__(self, data_file: str = DATA_FILE, data_dir: str = DATA_DIR):
+    def __init__(self, data_file: str = CONSTRUCTION_SPENDING_DATA, data_dir: str = DATA_DIR):
         self._data_dir = data_dir
         self._data_file = data_file
 
